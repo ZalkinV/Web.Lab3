@@ -17,6 +17,9 @@ function createJSONP()
 
 function createHTML()
 {
+    document.body.style.margin = 0;
+    document.body.style.overflow = "hidden";
+
     var mainDiv = document.createElement("div");
     mainDiv.width = document.documentElement.clientWidth;
     mainDiv.height = document.documentElement.clientHeight;
