@@ -30,8 +30,12 @@ function createHTML()
     canvas.width = mainDiv.width;
     canvas.height = mainDiv.height;
     document.body.appendChild(canvas);
+    drawImages(canvas);
+}
 
-    var ctx = canvas.getContext('2d');
+function drawImages(canvas)
+{
+    var ctx = canvas.getContext("2d");
     var img = new Image();
     img.src = "https://source.unsplash.com/collection/190727";
     img.onload = function() 
