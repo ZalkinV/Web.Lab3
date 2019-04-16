@@ -1,17 +1,29 @@
 "use strict"
 
-function citateResponse(response)
-{
-    alert(response.quoteText);
-}
+var citate;
 
-var requestBody = "method=" + encodeURIComponent("getQuote") + 
+function createJSONP()
+{
+    var requestBody = "method=" + encodeURIComponent("getQuote") + 
     "&format=" + encodeURIComponent("jsonp") +
     "&lang=" + encodeURIComponent("ru") + 
-    "&jsonp=" + encodeURIComponent("citateResponse");
+    "&jsonp=" + encodeURIComponent("initializeCitate");
 
-var jsonpRequest = document.createElement("script");
-jsonpRequest.src = "https://api.forismatic.com/api/1.0/?" + requestBody;
-jsonpRequest.async = true;
-document.head.appendChild(jsonpRequest);
+    var jsonpRequest = document.createElement("script");
+    jsonpRequest.src = "https://api.forismatic.com/api/1.0/?" + requestBody;
+    jsonpRequest.async = true;
+    document.head.appendChild(jsonpRequest);
+}
 
+function createHTML()
+{
+    alert(citate);
+}
+
+function initializeCitate(response)
+{
+    citate = response.quoteText;
+    createHTML();
+}
+
+createJSONP();
