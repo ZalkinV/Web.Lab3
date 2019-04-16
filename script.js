@@ -31,6 +31,7 @@ function createHTML()
     canvas.height = mainDiv.height;
     document.body.appendChild(canvas);
     drawImages(canvas);
+    setTimeout(drawText, 2000, canvas, citate);
 }
 
 function drawImages(canvas)
@@ -65,6 +66,16 @@ function drawImages(canvas)
         }
         img.src = "https://source.unsplash.com/collection/190727/" + img.data.width + "x" + img.data.height;
     }
+}
+
+function drawText(canvas, text)
+{
+    var ctx = canvas.getContext("2d");
+
+    ctx.font = "48px Helvetica"
+    ctx.textAlign = "center"
+    ctx.fillStyle = "rgb(0, 0, 0)";
+    ctx.fillText(text, canvas.width/2, canvas.height/2);
 }
 
 function initializeCitate(response)
