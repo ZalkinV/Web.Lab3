@@ -17,7 +17,10 @@ function createJSONP()
 
 function createHTML()
 {
-    alert(citate);
+    var mainDiv = document.createElement("div");
+    mainDiv.width = document.documentElement.clientWidth;
+    mainDiv.height = document.documentElement.clientHeight;
+    document.body.appendChild(mainDiv); 
 }
 
 function initializeCitate(response)
