@@ -36,11 +36,17 @@ function createHTML()
 function drawImages(canvas)
 {
     var ctx = canvas.getContext("2d");
-    var img = new Image();
-    img.src = "https://source.unsplash.com/collection/190727";
-    img.onload = function() 
+
+    var imagesLoaded = 0;
+    for (var i = 0; i < 4; i++)
     {
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        var img = new Image();
+        img.src = "https://source.unsplash.com/collection/190727/100x100";
+        img.onload = function() 
+        {
+            ctx.drawImage(img, 0, 0 + imagesLoaded * 100);
+            imagesLoaded++;
+        }
     }
 }
 
