@@ -37,6 +37,12 @@ function drawImages(canvas)
 {
     var ctx = canvas.getContext("2d");
 
+    var imagesCrossing = 
+    {
+        x: Math.round(Math.random() * canvas.width),
+        y: Math.round(Math.random() * canvas.height),
+    };
+
     var imagesLoaded = 0;
     for (var i = 0; i < 4; i++)
     {
