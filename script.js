@@ -39,8 +39,14 @@ function drawImages(canvas)
 
     var imagesCrossing = 
     {
-        x: Math.round(Math.random() * canvas.width),
-        y: Math.round(Math.random() * canvas.height),
+        x: randomCrossing(canvas.width, canvas.width / 4),
+        y: randomCrossing(canvas.height, canvas.height / 4),
+    };
+    function randomCrossing(fullSize, minBorder)
+    {
+        var min = Math.floor(minBorder);
+        var max = Math.floor(fullSize - minBorder);
+        return Math.floor(Math.random() * (max + 1 - min) + min);
     };
 
     for (var i = 0; i < 4; i++)
