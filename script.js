@@ -50,7 +50,12 @@ function drawImages(canvas)
         img.src = "https://source.unsplash.com/collection/190727/100x100";
         img.onload = function() 
         {
-            ctx.drawImage(img, 0, 0 + imagesLoaded * 100);
+            var x = imagesCrossing.x * (imagesLoaded % 2);
+            var y = imagesCrossing.y * Math.floor(imagesLoaded / 2);
+            var width = imagesLoaded % 2 == 0 ? imagesCrossing.x : canvas.width - imagesCrossing.x;
+            var height = Math.floor(imagesLoaded / 2) == 0 ? imagesCrossing.y : canvas.height - imagesCrossing.y;
+            
+            ctx.drawImage(img, x, y, width, height);
             imagesLoaded++;
         }
     }
