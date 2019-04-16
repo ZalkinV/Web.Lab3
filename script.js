@@ -21,6 +21,16 @@ function createHTML()
     mainDiv.width = document.documentElement.clientWidth;
     mainDiv.height = document.documentElement.clientHeight;
     document.body.appendChild(mainDiv); 
+
+    
+    var canvas = document.createElement("canvas");
+    canvas.width = mainDiv.width;
+    canvas.height = mainDiv.height;
+    document.body.appendChild(canvas);
+
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle = "rgba(255, 255, 0, 0.5)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 function initializeCitate(response)
