@@ -35,6 +35,27 @@ function createHTML()
 
 function drawImages(canvas)
 {
+    function loadImage(imagesLoaded)
+    {
+        if (imagesLoaded == 4)
+        {
+            return;
+        }
+
+        var x = imagesCrossing.x * (imagesLoaded % 2);
+        var y = imagesCrossing.y * Math.floor(imagesLoaded / 2);
+        var width = imagesLoaded % 2 == 0 ? imagesCrossing.x : canvas.width - imagesCrossing.x;
+        var height = Math.floor(imagesLoaded / 2) == 0 ? imagesCrossing.y : canvas.height - imagesCrossing.y;
+            
+        var img = new Image();
+        img.onload = function() 
+        {   
+            ctx.drawImage(img, x, y, width, height);
+            loadImage(++imagesLoaded);
+        }
+        img.src = "https://source.unsplash.com/collection/190727/" + width + "x" + height;
+    }
+
     var ctx = canvas.getContext("2d");
 
     var imagesCrossing = 
@@ -43,22 +64,8 @@ function drawImages(canvas)
         y: Math.round(Math.random() * canvas.height),
     };
 
-    var imagesLoaded = 0;
-    for (var i = 0; i < 4; i++)
-    {
-        var img = new Image();
-        img.src = "https://source.unsplash.com/collection/190727/100x100";
-        img.onload = function() 
-        {
-            var x = imagesCrossing.x * (imagesLoaded % 2);
-            var y = imagesCrossing.y * Math.floor(imagesLoaded / 2);
-            var width = imagesLoaded % 2 == 0 ? imagesCrossing.x : canvas.width - imagesCrossing.x;
-            var height = Math.floor(imagesLoaded / 2) == 0 ? imagesCrossing.y : canvas.height - imagesCrossing.y;
-            
-            ctx.drawImage(img, x, y, width, height);
-            imagesLoaded++;
-        }
-    }
+    loadImage(0);
+    
 }
 
 function initializeCitate(response)
