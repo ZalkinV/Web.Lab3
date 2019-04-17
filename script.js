@@ -89,8 +89,9 @@ function drawText(canvas, text)
         return lines;
     }
 
-    var ctx = canvas.getContext("2d");
+    darkenCanvas(canvas, 0.6)
 
+    var ctx = canvas.getContext("2d");
     var fontSize = 64;
     var fontHeight = fontSize * 1.2;
     ctx.font = fontSize + "px Helvetica"
@@ -116,6 +117,13 @@ function initializeCitate(response)
 {
     citate = response.quoteText;
     createHTML();
+}
+
+function darkenCanvas(canvas, opacity)
+{
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle = "rgba(0, 0, 0, " + opacity + ")";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 createJSONP();
