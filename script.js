@@ -70,6 +70,7 @@ function drawImages(canvas)
     for (var i = 0; i < 4; i++)
     {
         var img = new Image();
+        img.crossOrigin = "Anonymous";
         img.data = 
         {
             x: imagesCrossing.x * (i % 2),
