@@ -77,7 +77,16 @@ function drawText(canvas, text)
     ctx.font = fontSize + "px Helvetica"
     ctx.textAlign = "center"
     ctx.fillStyle = "rgb(0, 0, 0)";
-    ctx.fillText(text, canvas.width/2, canvas.height/2);
+
+
+    var words = text.split(" ");
+    for (var i = 0; i < words.length; i++)
+    {
+        var textMeasure = ctx.measureText(words[i]);
+        console.log(words[i] + " " + textMeasure.width);
+        ctx.fillText(words[i], canvas.width/2, fontHeight * i);
+    }
+    
 }
 
 function initializeCitate(response)
