@@ -72,7 +72,9 @@ function drawText(canvas, text)
 {
     var ctx = canvas.getContext("2d");
 
-    ctx.font = "48px Helvetica"
+    var fontSize = 64;
+    var fontHeight = fontSize * 1.2;
+    ctx.font = fontSize + "px Helvetica"
     ctx.textAlign = "center"
     ctx.fillStyle = "rgb(0, 0, 0)";
     ctx.fillText(text, canvas.width/2, canvas.height/2);
