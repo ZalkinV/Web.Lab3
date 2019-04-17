@@ -101,12 +101,13 @@ function drawText(canvas, text)
     var words = text.split(" ");
     var maxLineWidth = canvas.width * 0.85;
     var lines = createLines(ctx, words, maxLineWidth);
+    var linesTop = canvas.height / 2 - lines.length * fontHeight / 2;
 
     for (var i = 0; i < lines.length; i++)
     {
         var textMeasure = ctx.measureText(lines[i]);
         console.log(lines[i] + " " + textMeasure.width);
-        ctx.fillText(lines[i], canvas.width/2, fontHeight * (i + 1));
+        ctx.fillText(lines[i], canvas.width / 2, linesTop + fontHeight * (i + 1));
     }
     
 }
