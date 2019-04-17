@@ -116,8 +116,7 @@ function drawText(canvas, text)
     ctx.textAlign = "center"
     ctx.fillStyle = "rgb(255, 255, 255)";
 
-
-    var words = text.split(" ");
+    var words = text.split(/\s/);
     var maxLineWidth = canvas.width * 0.85;
     var lines = createLines(ctx, words, maxLineWidth);
     var linesTop = canvas.height / 2 - lines.length * fontHeight / 2;
