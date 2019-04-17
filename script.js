@@ -95,7 +95,7 @@ function drawText(canvas, text)
     var fontHeight = fontSize * 1.2;
     ctx.font = fontSize + "px Helvetica"
     ctx.textAlign = "center"
-    ctx.fillStyle = "rgb(0, 0, 0)";
+    ctx.fillStyle = "rgb(255, 255, 255)";
 
 
     var words = text.split(" ");
