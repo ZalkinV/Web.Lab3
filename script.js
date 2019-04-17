@@ -25,13 +25,19 @@ function createHTML()
     mainDiv.height = document.documentElement.clientHeight;
     document.body.appendChild(mainDiv); 
 
-
     var canvas = document.createElement("canvas");
     canvas.width = mainDiv.width;
     canvas.height = mainDiv.height;
     document.body.appendChild(canvas);
     drawImages(canvas);
     setTimeout(drawText, 2000, canvas, citate);
+
+    var saveButton = document.createElement("button");
+    saveButton.textContent = "Save collage";
+    saveButton.style.left = 10 + "px";
+    saveButton.style.top = 10 + "px";
+    saveButton.style.position = "absolute";
+    document.body.appendChild(saveButton);
 }
 
 function drawImages(canvas)
