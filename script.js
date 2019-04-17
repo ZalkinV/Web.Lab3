@@ -32,6 +32,11 @@ function createHTML()
     drawImages(canvas);
     setTimeout(drawText, 2000, canvas, citate);
 
+
+    var saveLink = document.createElement("a");
+    saveLink.hidden = true;
+    document.body.appendChild(saveLink);
+
     var saveButton = document.createElement("button");
     saveButton.textContent = "Save collage";
     saveButton.style.left = 10 + "px";
