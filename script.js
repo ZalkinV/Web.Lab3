@@ -30,8 +30,10 @@ function createHTML()
     canvas.height = mainDiv.height;
     document.body.appendChild(canvas);
     drawImages(canvas);
-    setTimeout(drawText, 2000, canvas, citate);
-
+    window.onload = function()
+    {
+        drawText(canvas, citate);
+    }
 
     var saveLink = document.createElement("a");
     saveLink.hidden = true;
