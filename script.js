@@ -42,6 +42,12 @@ function createHTML()
     saveButton.style.left = 10 + "px";
     saveButton.style.top = 10 + "px";
     saveButton.style.position = "absolute";
+    saveButton.onclick = function()
+    {
+        saveLink.href = canvas.toDataURL("image/png");
+        saveLink.download = "Collage.png";
+        saveLink.click();
+    }
     document.body.appendChild(saveButton);
 }
 
