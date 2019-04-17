@@ -70,6 +70,25 @@ function drawImages(canvas)
 
 function drawText(canvas, text)
 {
+    function createLines(ctx, words, lineWidth)
+    {
+        var lines = [""];
+        var currentLine = 0;
+        for (var i = 0; i < words.length; i++)
+        {
+            if (ctx.measureText(lines[currentLine] + words[i]).width < lineWidth)
+            {
+                lines[currentLine] += " " + words[i];
+            }
+            else
+            {
+                lines[++currentLine] = words[i];
+            }
+        }
+
+        return lines;
+    }
+
     var ctx = canvas.getContext("2d");
 
     var fontSize = 64;
