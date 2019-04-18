@@ -33,6 +33,7 @@ function createHTML()
     window.onload = function()
     {
         drawText(canvas, citate);
+        document.body.appendChild(saveButton);
     }
 
     var saveLink = document.createElement("a");
@@ -50,7 +51,6 @@ function createHTML()
         saveLink.download = "Collage.png";
         saveLink.click();
     }
-    document.body.appendChild(saveButton);
 }
 
 function drawImages(canvas)
