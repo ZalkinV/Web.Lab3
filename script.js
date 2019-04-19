@@ -30,19 +30,23 @@ function createHTML()
     document.body.style.overflow = "hidden";
 
     var mainDiv = document.createElement("div");
+    mainDiv.id = "mainDiv";
     mainDiv.width = document.documentElement.clientWidth;
     mainDiv.height = document.documentElement.clientHeight;
+    mainDiv.style.display = "flex";
     document.body.appendChild(mainDiv); 
 
     canvas = document.createElement("canvas");
     canvas.width = mainDiv.width;
     canvas.height = mainDiv.height;
-    document.body.appendChild(canvas);
+    canvas.style.margin = "auto";
+    mainDiv.appendChild(canvas);
+    
     drawImages();
 
     var saveLink = document.createElement("a");
     saveLink.hidden = true;
-    document.body.appendChild(saveLink);
+    mainDiv.appendChild(saveLink);
 
     saveButton = document.createElement("button");
     saveButton.textContent = "Save collage";
@@ -161,7 +165,7 @@ function darkenCanvas(opacity)
 function visualizeElements()
 {
     drawText();
-    document.body.appendChild(saveButton);
+    document.getElementById("mainDiv").appendChild(saveButton);
 }
 
 function checkElementsLoading()
