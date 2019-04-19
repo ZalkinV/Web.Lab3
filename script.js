@@ -1,6 +1,13 @@
 "use strict"
 
 var citate;
+var canvas;
+var saveButton;
+var elementsLoaded = 
+{
+    citate: false,
+    images: 0
+}
 
 function createJSONP()
 {
@@ -17,6 +24,8 @@ function createJSONP()
 
 function createHTML()
 {
+    createJSONP();
+
     document.body.style.margin = 0;
     document.body.style.overflow = "hidden";
 
@@ -25,22 +34,17 @@ function createHTML()
     mainDiv.height = document.documentElement.clientHeight;
     document.body.appendChild(mainDiv); 
 
-    var canvas = document.createElement("canvas");
+    canvas = document.createElement("canvas");
     canvas.width = mainDiv.width;
     canvas.height = mainDiv.height;
     document.body.appendChild(canvas);
-    drawImages(canvas);
-    window.onload = function()
-    {
-        drawText(canvas, citate);
-        document.body.appendChild(saveButton);
-    }
+    drawImages();
 
     var saveLink = document.createElement("a");
     saveLink.hidden = true;
     document.body.appendChild(saveLink);
 
-    var saveButton = document.createElement("button");
+    saveButton = document.createElement("button");
     saveButton.textContent = "Save collage";
     saveButton.style.left = 10 + "px";
     saveButton.style.top = 10 + "px";
@@ -53,7 +57,7 @@ function createHTML()
     }
 }
 
-function drawImages(canvas)
+function drawImages()
 {
     var ctx = canvas.getContext("2d");
 
@@ -82,13 +86,18 @@ function drawImages(canvas)
         }
         img.onload = function() 
         {
+            elementsLoaded.images++;
             ctx.drawImage(this, this.data.x, this.data.y, this.data.width, this.data.height);
+            if (checkElementsLoading())
+            {
+                visualizeElements();
+            }
         }
         img.src = "https://source.unsplash.com/" + img.data.width + "x" + img.data.height + "/?outdoor";
     }
 }
 
-function drawText(canvas, text)
+function drawText()
 {
     function createLines(ctx, words, lineWidth)
     {
@@ -109,7 +118,7 @@ function drawText(canvas, text)
         return lines;
     }
 
-    darkenCanvas(canvas, 0.6)
+    darkenCanvas(0.6)
 
     var ctx = canvas.getContext("2d");
     var fontSize = 64;
@@ -118,7 +127,7 @@ function drawText(canvas, text)
     ctx.textAlign = "center"
     ctx.fillStyle = "rgb(255, 255, 255)";
 
-    var words = text.split(/\s/);
+    var words = citate.split(/\s/);
     var maxLineWidth = canvas.width * 0.85;
     var lines = createLines(ctx, words, maxLineWidth);
     var linesTop = canvas.height / 2 - lines.length * fontHeight / 2;
@@ -135,14 +144,29 @@ function drawText(canvas, text)
 function initializeCitate(response)
 {
     citate = response.quoteText;
-    createHTML();
+    elementsLoaded.citate = true;
+    if (checkElementsLoading())
+    {
+        visualizeElements();
+    }
 }
 
-function darkenCanvas(canvas, opacity)
+function darkenCanvas(opacity)
 {
     var ctx = canvas.getContext("2d");
     ctx.fillStyle = "rgba(0, 0, 0, " + opacity + ")";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-createJSONP();
+function visualizeElements()
+{
+    drawText();
+    document.body.appendChild(saveButton);
+}
+
+function checkElementsLoading()
+{
+    return elementsLoaded.citate && elementsLoaded.images == 4;
+}
+
+createHTML();
