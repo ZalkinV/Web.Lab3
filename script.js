@@ -51,7 +51,7 @@ function createHTML()
     saveButton.style.position = "absolute";
     saveButton.onclick = function()
     {
-        saveLink.href = canvas.toDataURL("image/png");
+        saveLink.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
         saveLink.download = "Collage.png";
         saveLink.click();
     }
